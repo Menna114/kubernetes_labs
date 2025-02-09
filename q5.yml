@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: busybox
+      app: nginx
   template:
     metadata:
       labels:
-        app: busybox
+        app: nginx
     spec:
       containers:
       - name: nginx
