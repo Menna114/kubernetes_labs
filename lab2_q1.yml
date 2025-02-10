@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service #name of service
+  labels:
+    app: web-service #doesn't affect which pod the service will select
+spec:
+  ports:
+  - port: 90
+  clusterIP: None
+  selector:
+    app: nginx #any pod with app:nginx in its label will be part of this service
+---
+apiVersion: apps/v1
+kind: StatefulSet #kind of set
+metadata:
+  name: web-statefulset #name of stateful-set
+spec:
+  serviceName: "web-service" #name of service which will be used by this set
+  replicas: 2 #num of replicas
+  selector:
+    matchLabels:
+      app: nginx #stateful-set controls only pods that have label app:nginx
+  template: #pod template
+    metadata:
+      labels:
+        app: nginx #each pod made will have label app:nginx
+    spec:
+      containers:
+      - name: nginx #containers inside the pod will have name nginx
+        image: nginx:latest
