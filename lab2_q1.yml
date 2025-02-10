@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: web-service #name of service
   labels:
-    app: web-service #doesn't affect which pod the service will select
+    app: web-service #doesn't affect which pod the service will select for i dentifying the service itself
 spec:
   ports:
   - port: 90
