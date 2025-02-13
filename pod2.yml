@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-new-image
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    readinessProbe:
+      httpGet:
+        path: /health
+        port: 80
+      initialDelaySeconds: 3
+      periodSeconds: 3
