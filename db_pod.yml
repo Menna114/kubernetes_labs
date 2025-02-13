@@ -6,6 +6,9 @@ spec:
   containers:
     - name: mysql
       image: mysql:5.7
-      envFrom:
-        - secretRef:
-            name: db-secret
+      env:
+        - name: db-secret
+          valueFrom:
+            configMapKeyRef:
+              name: MYSQL_DATABASE
+              key: c3FsMDEK
