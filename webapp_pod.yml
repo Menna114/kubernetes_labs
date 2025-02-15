@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+spec:
+  containers:
+  - image: nginx:latest
+    name: nginx-lab5
+    volumeMounts:
+      - mountPath: /var/log/nginx
+        name: nginx-volume
+  volumes:
+    - name: nginx-volume
+      persistentVolumeClaim:
+        claimName: claim-log-1
